@@ -6,12 +6,11 @@ import java.awt.*;
 public class DirectoryNavigator {
   File[] files;
   DirectoryNavigator() {
-    files = (new File("/")).listFiles();
+    files = (new File("/home/chandrahas")).listFiles();
 
   }
-  void InnerDirectory(File newDirectory) {
-    files = newDirectory.listFiles();
-
+  void innerDirectory(int count) {
+    files = (files[count]).listFiles();
   }
   public int getLength() {
     return files.length;
