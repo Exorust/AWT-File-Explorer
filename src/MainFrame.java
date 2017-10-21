@@ -12,23 +12,30 @@ public class MainFrame extends Frame {
     setLayout(new FlowLayout(FlowLayout.LEFT));
     setFileList(new FileButton(new File("/")));
     addButtons();
+    attachListener();
   }
-  
+
   void setFileList(FileButton fb) {
+	removeButtons();
     File fl = fb.getFile();
     File[] files = fl.listFiles();
     ListLength = files.length;
-    FileButton[] fileButtonList = new FileButton[ListLength];
+    fileButtonList = new FileButton[ListLength];
     for(int index = 0; index < ListLength; index++) {
       fileButtonList[index] = new FileButton(files[index]);
-      System.out.println(index);
     }
 
+  }
+  void removeButtons() {
+   for(int index = 0; index < ListLength; index++) {
+     remove(fileButtonList[index]);
+   }
   }
   void addButtons() {
     for(int index = 0; index < ListLength; index++) {
       add(fileButtonList[index]);
     }
+    
   }
   void attachListener() {
     for(int index = 0; index < ListLength; index++) {
@@ -38,7 +45,6 @@ public class MainFrame extends Frame {
     }
   }
   public void paint(Graphics g) {
-    addButtons();
   }
   public static void main(String[] args) {
     MainFrame appMainFrame = new MainFrame();
@@ -55,7 +61,11 @@ class FileClicker implements ActionListener {
     this.currentFileButton = currentFileButton;
   }
   public void actionPerformed(ActionEvent ae) {
+	System.out.println(currentFileButton.getFile().getName());
     mfCaller.setFileList(currentFileButton);
+    mfCaller.addButtons();
+    mfCaller.attachListener();
+    mfCaller.revalidate();
     mfCaller.repaint();
   }
 }
