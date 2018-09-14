@@ -1,7 +1,9 @@
 An AWT based File Explorer
 ==========================
 
-Uses AWT to implement a File Explorer.
+Uses Java AWT to implement a File Explorer. 
+
+Version 2 with pictures on the File Label will soon be done!
 
 Screenshots
 ------------
